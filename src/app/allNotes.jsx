@@ -1,18 +1,18 @@
-import { Ionicons } from '@expo/vector-icons';
+import { Ionicons, Octicons } from '@expo/vector-icons';
 import { StatusBar } from 'expo-status-bar';
 import { useState } from 'react';
-import { Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
+import { Pressable, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 const MainPage = () => {
     const [search, setSearch] = useState('')
     return(
-        <SafeAreaView style={{flex:1,backgroundColor:'rgba(131, 211, 243, 0.23)'}}>
+        <SafeAreaView style={{flex:1,backgroundColor:'rgba(171, 223, 244, 0.27)'}}>
             <StatusBar style='dark'/>
-            <View style={{flexDirection:'column',gap:10}}>
+            <View style={{justifyContent:'space-between',flex:1}}>
 
-            {/* TOP BAR MENU */}
-                <View style={styles.wholePage}>
+                {/* TOP BAR MENU */}
+                <View>
                     <View style={styles.topMenu}>
                         <Pressable style={styles.menu}>
                             <Ionicons name="menu" size={30} color="black"/>
@@ -39,10 +39,11 @@ const MainPage = () => {
                 </View>
 
                 {/* CATEGORIES */}
-                <Text style={{marginLeft:27, fontSize:18, fontWeight:'500'}}>Categories</Text>
+                <Text style={{marginLeft:27, fontSize:18, fontWeight:'500',marginBottom:17}}>Categories</Text>
 
                 {/* PERSONAL CATEGORY */}
-                <View style={{flexDirection:'row',gap:25,marginLeft:25}}>
+                <ScrollView horizontal showsHorizontalScrollIndicator={false}
+                 contentContainerStyle={{flexDirection:'row',gap:25,paddingHorizontal:25}}>
                     <View style={{alignItems:'center',gap:5}}>
                         <Pressable style={[styles.catgoryStyle,{backgroundColor:"rgba(192, 134, 192, 0.39)"}]}>
                             <Ionicons name="person" size={24} color="purple"/>
@@ -80,9 +81,38 @@ const MainPage = () => {
                             <Ionicons name="add" size={24} color="grey"/>
                         </Pressable>
                     </View>
+                </ScrollView>
 
+
+                <View style={styles.newNoteButton}>
+                    <Pressable style={{backgroundColor:'rgb(206, 231, 240)',borderRadius:30,padding:9,elevation:5}}>
+                        <Ionicons name="add" size={45} color="black"/>
+                    </Pressable>
                 </View>
 
+
+                {/* BOTTOM NAVIGATION */}
+                <View style={styles.bottomNav}>
+                    <View style={styles.navItem}>
+                        <Ionicons name="document-text-outline" size={24} color="black"/>
+                        <Text>Notes</Text>
+                    </View>
+
+                    <View style={styles.navItem}>
+                        <Octicons name="star" size={24} color="black"/>
+                        <Text>Favourites</Text>
+                    </View>
+
+                    <View style={styles.navItem}>
+                        <Ionicons name="checkbox-outline" size={24} color="black"/>
+                        <Text>To-do</Text>
+                    </View>
+
+                    <View style={styles.navItem}>
+                        <Ionicons name="settings-outline" size={24} color="black"/>
+                        <Text>Settings</Text>
+                    </View>
+                </View>
             </View>
         </SafeAreaView>
        
@@ -90,11 +120,16 @@ const MainPage = () => {
    
 }
 
+//  const NoteCards = () => {
+//     return(
+        
+//     )
+
+// }
+
 export default MainPage
 
 const styles = StyleSheet.create({
-   
-
     menu:{
         borderRadius:8,
         backgroundColor:'rgba(208, 224, 231, 0.36)',
@@ -116,7 +151,7 @@ const styles = StyleSheet.create({
         height:45,
         borderWidth:1,
         borderColor:"black",
-        borderRadius:7,
+        borderRadius:9,
         paddingLeft:10,
         flexDirection:'row',
         alignItems:'center',
@@ -129,6 +164,25 @@ const styles = StyleSheet.create({
         justifyContent:'center',
         borderRadius:6,
         alignItems:'center',
-    }
+    },
 
+    newNoteButton:{
+        alignSelf:'flex-end',
+        marginRight:10,
+        alignItems:'center',
+        justifyContent:'center',
+        marginBottom:14,
+    },
+
+    bottomNav:{
+        flexDirection:'row',
+        justifyContent:'space-around',
+        alignItems:'center',
+        paddingVertical:12,
+    },
+
+    navItem:{
+        alignItems:'center',
+        gap:4
+    }
 })
