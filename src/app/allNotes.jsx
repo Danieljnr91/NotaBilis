@@ -1,20 +1,20 @@
-import { Ionicons, Octicons } from '@expo/vector-icons';
+import { Ionicons } from '@expo/vector-icons';
 import { StatusBar } from 'expo-status-bar';
 import { useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 const MainPage = () => {
-    const [search, setSearch] = useState('')
+    const [search, setSearch] = useState('');
     return(
         <SafeAreaView style={{flex:1,backgroundColor:'rgba(171, 223, 244, 0.27)'}}>
             <StatusBar style='dark'/>
             <View style={{justifyContent:'space-between',flex:1}}>
 
                 {/* TOP BAR MENU */}
-                <View>
+                
                     <View style={styles.topMenu}>
-                        <Pressable style={styles.menu}>
+                        <Pressable style={({pressed}) => [styles.menu,pressed&&{transform:[{scale:0.95}]}]}>
                             <Ionicons name="menu" size={30} color="black"/>
                         </Pressable>
 
@@ -24,7 +24,7 @@ const MainPage = () => {
                             </Text>
                         </View>
                     </View>
-                </View>
+                
 
                 {/* SEARCH BAR */}
                 <View style={styles.searchBarContainer}>
@@ -45,7 +45,9 @@ const MainPage = () => {
                 <ScrollView horizontal showsHorizontalScrollIndicator={false}
                  contentContainerStyle={{flexDirection:'row',gap:25,paddingHorizontal:25}}>
                     <View style={{alignItems:'center',gap:5}}>
-                        <Pressable style={[styles.catgoryStyle,{backgroundColor:"rgba(192, 134, 192, 0.39)"}]}>
+                        <Pressable style={({pressed}) => [styles.catgoryStyle,{backgroundColor:"rgba(192, 134, 192, 0.39)"},
+                            pressed&&{transform:[{scale:0.95}]}
+                        ]}>
                             <Ionicons name="person" size={24} color="purple"/>
                         </Pressable>
                         <Text>Personal</Text>
@@ -53,7 +55,9 @@ const MainPage = () => {
 
                     {/* WORK CATGORY */}
                     <View style={{alignItems:'center',gap:5}}>
-                        <Pressable style={[styles.catgoryStyle,{backgroundColor:'rgba(91, 219, 91, 0.39)'}]}>
+                        <Pressable style={({pressed}) => [styles.catgoryStyle,{backgroundColor:'rgba(91, 219, 91, 0.39)'},
+                            pressed&&{transform:[{scale:0.95}]}
+                        ]}>
                             <Ionicons name="briefcase" size={24} color="green"/>
                         </Pressable>
                         <Text>Work</Text>
@@ -61,7 +65,9 @@ const MainPage = () => {
                    
                    {/* TRAVEL CATEGORY */}
                    <View style={{alignItems:'center',gap:5}}>
-                        <Pressable style={[styles.catgoryStyle,{backgroundColor:'rgba(241, 241, 144, 0.39)'}]}>
+                        <Pressable style={({pressed}) => [styles.catgoryStyle,{backgroundColor:'rgba(219, 219, 61, 0.39)'},
+                            pressed&&{transform:[{scale:0.95}]}
+                        ]}>
                             <Ionicons name="car" size={24} color="rgb(213, 213, 3)"/>
                         </Pressable>
                         <Text>Travel</Text>
@@ -69,7 +75,9 @@ const MainPage = () => {
 
                     {/* HEALTH CATEGORY */}
                     <View style={{alignItems:'center',gap:5}}>
-                        <Pressable style={[styles.catgoryStyle,{backgroundColor:'rgba(233, 136, 136, 0.39)'}]}>
+                        <Pressable style={({pressed}) => [styles.catgoryStyle,{backgroundColor:'rgba(233, 136, 136, 0.39)'},
+                            pressed&&{transform:[{scale:0.95}]}
+                        ]}>
                             <Ionicons name="heart" size={24} color="rgb(218, 101, 101)"/>
                         </Pressable>
                         <Text>Health</Text>
@@ -77,7 +85,9 @@ const MainPage = () => {
 
 
                     <View style={{alignItems:'center',gap:5}}>
-                        <Pressable style={[styles.catgoryStyle,{backgroundColor:'rgba(211, 211, 211, 0.58)',borderRadius:10,width:45}]}>
+                        <Pressable style={({pressed}) => [styles.catgoryStyle,{backgroundColor:'rgba(211, 211, 211, 0.58)',borderRadius:10,width:45},
+                            pressed&&{transform:[{scale:0.95}]}
+                        ]}>
                             <Ionicons name="add" size={24} color="grey"/>
                         </Pressable>
                     </View>
@@ -85,34 +95,12 @@ const MainPage = () => {
 
 
                 <View style={styles.newNoteButton}>
-                    <Pressable style={{backgroundColor:'rgb(206, 231, 240)',borderRadius:30,padding:9,elevation:5}}>
+                    <Pressable style={({pressed}) => [{backgroundColor:'rgb(218, 237, 244)',borderRadius:30,padding:9,elevation:3},
+                        pressed&&{transform:[{scale:0.95}]}
+                    ]}>
                         <Ionicons name="add" size={45} color="black"/>
                     </Pressable>
-                </View>
-
-
-                {/* BOTTOM NAVIGATION */}
-                <View style={styles.bottomNav}>
-                    <View style={styles.navItem}>
-                        <Ionicons name="document-text-outline" size={24} color="black"/>
-                        <Text>Notes</Text>
-                    </View>
-
-                    <View style={styles.navItem}>
-                        <Octicons name="star" size={24} color="black"/>
-                        <Text>Favourites</Text>
-                    </View>
-
-                    <View style={styles.navItem}>
-                        <Ionicons name="checkbox-outline" size={24} color="black"/>
-                        <Text>To-do</Text>
-                    </View>
-
-                    <View style={styles.navItem}>
-                        <Ionicons name="settings-outline" size={24} color="black"/>
-                        <Text>Settings</Text>
-                    </View>
-                </View>
+                </View> 
             </View>
         </SafeAreaView>
        
@@ -173,16 +161,4 @@ const styles = StyleSheet.create({
         justifyContent:'center',
         marginBottom:14,
     },
-
-    bottomNav:{
-        flexDirection:'row',
-        justifyContent:'space-around',
-        alignItems:'center',
-        paddingVertical:12,
-    },
-
-    navItem:{
-        alignItems:'center',
-        gap:4
-    }
 })
