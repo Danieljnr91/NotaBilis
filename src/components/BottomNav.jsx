@@ -21,16 +21,21 @@ const BottomNavigation = () => {
                     <Text>Favourites</Text>
                 </Pressable>
             </Link>
-            
-            <Pressable onPress={() => setActiveTab('To-do')} style={styles.navItem}>
-                <Ionicons name={activeTab === 'To-do' ? 'checkbox' : 'checkbox-outline'} size={24} color="black"/>
-                <Text>To-do</Text>
-            </Pressable>
 
-            <Pressable onPress={() => setActiveTab('settings')} style={styles.navItem}>
-                <Ionicons name={activeTab === 'settings' ? 'settings' : 'settings-outline'} size={24} color="black"/>
-                <Text>Settings</Text>
-            </Pressable>
+            
+            <Link href="/todoPage" asChild>
+                <Pressable onPress={() => setActiveTab('To-do')} style={styles.navItem}>
+                    <Ionicons name={activeTab === 'To-do' ? 'checkbox' : 'checkbox-outline'} size={24} color="black"/>
+                    <Text>To-do</Text>
+                </Pressable>
+            </Link>
+            
+            <Link href="/settings" asChild>
+                <Pressable onPress={() => setActiveTab('settings')} style={styles.navItem}>
+                    <Ionicons name={activeTab === 'settings' ? 'settings' : 'settings-outline'} size={24} color="black"/>
+                    <Text>Settings</Text>
+                </Pressable>
+            </Link>   
          </View>
 
     ) 
@@ -45,7 +50,7 @@ const styles = StyleSheet.create({
         justifyContent:'space-around',
         alignItems:'center',
         paddingVertical:12,
-        backgroundColor:'rgba(171, 223, 244, 0.27)',
+        backgroundColor:"white",
     },
 
     navItem:{
